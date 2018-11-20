@@ -1,0 +1,23 @@
+{
+    "name": "polidog/twig-path-checker-bundle",
+    "authors": [
+        {
+            "name": "Ryota Mochizuki",
+            "email": "polidogs@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.3",
+        "symfony/http-kernel": "~3.4|~4.0",
+        "twig/twig": "~2.0",
+        "symfony/console": "~3.4|~4.0",
+        "symfony/framework-bundle": "~3.4|~4.0",
+        "symfony/dependency-injection": "~3.4|~4.0",
+        "symfony/config": "~3.4|~4.0",
+        "doctrine/common": "~2.9",
+        "sensio/framework-extra-bundle": "^5.2"
+    },
+    "autoload": {
+        "Polidog\\TwigPathCheckerBundle\\": "src"
+    }
+}
