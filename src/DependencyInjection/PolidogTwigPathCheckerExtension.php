@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 
-class TwigPathCheckerExtension extends Extension
+class PolidogTwigPathCheckerExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
