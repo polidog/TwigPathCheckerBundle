@@ -36,7 +36,7 @@ class CheckerCommand extends Command
 
     protected function configure() : void
     {
-        $this->setName('Polidog:twig:path-checker');
+        $this->setName('polidog:twig:path-checker');
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
