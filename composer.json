@@ -18,6 +18,8 @@
         "sensio/framework-extra-bundle": "^5.2"
     },
     "autoload": {
-        "Polidog\\TwigPathCheckerBundle\\": "src"
+        "psr-4": {
+            "Polidog\\TwigPathCheckerBundle\\": "src"
+        }
     }
 }
