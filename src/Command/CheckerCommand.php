@@ -1,7 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Polidog\TwigPathCheckerBundle\Command;
-
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,7 +13,7 @@ class CheckerCommand extends Command
     /**
      * @var TemplateFinder
      */
-    private $controllerFinder;
+    private $templateFinder;
 
     /**
      * @var TwigExistChecker
@@ -23,26 +22,26 @@ class CheckerCommand extends Command
 
     /**
      * CheckerCommand constructor.
-     * @param TemplateFinder $controllerFinder
+     *
+     * @param TemplateFinder   $controllerFinder
      * @param TwigExistChecker $twigExistChecker
      */
     public function __construct(TemplateFinder $controllerFinder, TwigExistChecker $twigExistChecker)
     {
         parent::__construct();
-        $this->controllerFinder = $controllerFinder;
+        $this->templateFinder = $controllerFinder;
         $this->checker = $twigExistChecker;
     }
 
-
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('lint:twig:path');
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): void
     {
         $exitStatus = 0;
-        foreach($this->controllerFinder->run($this->getApplication()->getKernel()) as $data) {
+        foreach ($this->templateFinder->find() as $data) {
             foreach ($data['templatePaths'] as $templatePath) {
                 if (false === $this->checker->check($templatePath)) {
                     $exitStatus = 1;
@@ -50,6 +49,17 @@ class CheckerCommand extends Command
                 }
             }
         }
+
+
+//
+//        foreach ($this->templateFinder->run($this->getApplication()->getKernel()) as $data) {
+//            foreach ($data['templatePaths'] as $templatePath) {
+//                if (false === $this->checker->check($templatePath)) {
+//                    $exitStatus = 1;
+//                    $output->writeln("<error>[ERROR]</error> Unable to find template: ${templatePath}, Contrlller: ${data['name']}");
+//                }
+//            }
+//        }
         exit($exitStatus);
     }
 }
