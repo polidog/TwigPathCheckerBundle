@@ -11,3 +11,12 @@ services:
         tags:
             - { name: 'console.command', command: 'lint:twig:path' }
 
+
+    Polidog\TwigPathCheckerBundle\Route\Router:
+        autowire: true
+
+    Polidog\TwigPathCheckerBundle\Controller\ControllerCreator:
+        autowire: true
+
+    Polidog\TwigPathCheckerBundle\Template\AnnotationParser:
+        autowire: true

@@ -3,10 +3,12 @@
 namespace Polidog\TwigPathCheckerBundle\Template;
 
 use Doctrine\Common\Annotations\Reader;
+use Doctrine\Common\Util\ClassUtils;
 use Polidog\TwigPathCheckerBundle\Controller\ControllerResolver;
 use ReflectionClass;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Templating\TemplateGuesser;
+use Symfony\Component\HttpFoundation\Request;
 
 class AnnotationParser implements AnnotationParserInterface
 {
@@ -51,6 +53,8 @@ class AnnotationParser implements AnnotationParserInterface
         $className = class_exists('Doctrine\Common\Util\ClassUtils') ? ClassUtils::getClass($controller[0]) : \get_class($controller[0]);
         $object = new ReflectionClass($className);
         $method = $object->getMethod($controller[1]);
+        $request = new Request();
+        $request->setFormat('html',['text/html']);
         $templatePaths = [];
 
         foreach ($this->reader->getMethodAnnotations($method) as $template) {
