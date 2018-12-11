@@ -51,7 +51,11 @@ class TemplateFinder
         $this->templateGuesser = $templateGuesser;
     }
 
-    public function run(KernelInterface $kernel):\Generator
+    /**
+     * @param KernelInterface $kernel
+     * @return \Generator
+     */
+    public function run(KernelInterface $kernel)
     {
 
         foreach ($this->router->getRouteCollection() as $route) {

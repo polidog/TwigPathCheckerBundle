@@ -3,30 +3,30 @@
 namespace Polidog\TwigPathCheckerBundle\Checker;
 
 
+use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
+
 class TwigExistChecker
 {
     /**
-     * @var \Twig_Environment
+     * @var FilesystemLoader
      */
-    private $twig;
+    private $loader;
 
     /**
      * TwigExistChecker constructor.
-     * @param \Twig_Environment $twig
+     * @param FilesystemLoader $loader
      */
-    public function __construct(\Twig_Environment $twig)
+    public function __construct(FilesystemLoader $loader)
     {
-        $this->twig = $twig;
+        $this->loader = $loader;
     }
 
-
-    public function check(string $templateName) : bool
+    /**
+     * @param string $templateName
+     * @return bool
+     */
+    public function check(string $templateName)
     {
-        try {
-            $this->twig->load($templateName);
-            return true;
-        } catch (\Twig_Error_Loader $e) {
-            return false;
-        }
+        return $this->loader->exists($templateName);
     }
 }
