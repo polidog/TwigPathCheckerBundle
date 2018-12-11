@@ -3,7 +3,6 @@
 namespace Polidog\TwigPathCheckerBundle\Command;
 
 
-use Polidog\TwigPathCheckerBundle\Checker\Loader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
