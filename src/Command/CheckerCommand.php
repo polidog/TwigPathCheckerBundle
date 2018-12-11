@@ -44,6 +44,7 @@ class CheckerCommand extends Command
         $exitStatus = 0;
         foreach($this->controllerFinder->run($this->getApplication()->getKernel()) as $data) {
             foreach ($data['templatePaths'] as $templatePath) {
+                $output->writeln('check: '. $templatePath);
                 if (false === $this->checker->check($templatePath)) {
                     $exitStatus = 1;
                     $output->writeln("<error>[ERROR]</error> Unable to find template: ${templatePath}, Contrlller: ${data['name']}");
