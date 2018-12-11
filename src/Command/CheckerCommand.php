@@ -22,22 +22,17 @@ class CheckerCommand extends Command
      */
     private $checker;
 
-    /**
-     * @var Loader
-     */
-    private $loader;
 
     /**
      * CheckerCommand constructor.
      * @param TemplateFinder $controllerFinder
      * @param TwigExistChecker $twigExistChecker
      */
-    public function __construct(TemplateFinder $controllerFinder, TwigExistChecker $twigExistChecker, Loader $loader)
+    public function __construct(TemplateFinder $controllerFinder, TwigExistChecker $twigExistChecker)
     {
         parent::__construct();
         $this->controllerFinder = $controllerFinder;
         $this->checker = $twigExistChecker;
-        $this->loader = $loader;
     }
 
 
