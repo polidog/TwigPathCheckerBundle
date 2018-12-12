@@ -50,7 +50,7 @@ class CheckerCommand extends Command
                     $exitStatus = 1;
                     $output->writeln("<error>[ERROR]</error> Unable to find template: ${templatePath}, Contrlller: ${data['name']}");
                 } else {
-                    $output->writeln('<success>[ok]</success>'. $this->checker->getRealPath($templatePath));
+                    $output->writeln('<info>[ok]</info>'. $this->checker->getRealPath($templatePath));
                 }
             }
         }

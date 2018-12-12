@@ -39,7 +39,7 @@ class TwigExistChecker
     {
         $ref = new \ReflectionMethod($this->loader, 'findTemplate');
         $ref->setAccessible(true);
-        return $ref->invoke($templateName);
+        return $ref->invokeArgs($this->loader, $templateName);
 
     }
 }
