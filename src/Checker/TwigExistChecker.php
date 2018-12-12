@@ -2,21 +2,18 @@
 
 namespace Polidog\TwigPathCheckerBundle\Checker;
 
-
-use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
-
 class TwigExistChecker
 {
     /**
-     * @var FilesystemLoader
+     * @var \Twig_Loader_Filesystem
      */
     private $loader;
 
     /**
      * TwigExistChecker constructor.
-     * @param FilesystemLoader $loader
+     * @param \Twig_Loader_Filesystem $loader
      */
-    public function __construct(FilesystemLoader $loader)
+    public function __construct(\Twig_Loader_Filesystem $loader)
     {
         $this->loader = $loader;
     }
