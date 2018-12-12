@@ -3,6 +3,7 @@
 namespace Polidog\TwigPathCheckerBundle\Command;
 
 
+use Polidog\TwigPathCheckerBundle\Checker\Loader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,17 +22,23 @@ class CheckerCommand extends Command
      */
     private $checker;
 
+    /**
+     * @var Loader
+     */
+    private $loader;
+
 
     /**
      * CheckerCommand constructor.
      * @param TemplateFinder $controllerFinder
      * @param TwigExistChecker $twigExistChecker
      */
-    public function __construct(TemplateFinder $controllerFinder, TwigExistChecker $twigExistChecker)
+    public function __construct(TemplateFinder $controllerFinder, TwigExistChecker $twigExistChecker, Loader $loader)
     {
         parent::__construct();
         $this->controllerFinder = $controllerFinder;
         $this->checker = $twigExistChecker;
+        $this->loader = $loader;
     }
 
 
@@ -49,6 +56,8 @@ class CheckerCommand extends Command
                 if (false === $this->checker->check($templatePath)) {
                     $exitStatus = 1;
                     $output->writeln("<error>[ERROR]</error> Unable to find template: ${templatePath}, Contrlller: ${data['name']}");
+                } else {
+                    $output->writeln('<success>[ok]</success>'. $this->loader->findTemplate($templatePath));
                 }
             }
         }
