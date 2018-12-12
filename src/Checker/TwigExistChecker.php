@@ -27,7 +27,10 @@ class TwigExistChecker
      */
     public function check($templateName)
     {
-        return $this->loader->exists($templateName);
+        if ($this->loader->exists($templateName)) {
+            return file_exists($this->getRealPath($templateName));
+        }
+        return false;
     }
 
     /**
