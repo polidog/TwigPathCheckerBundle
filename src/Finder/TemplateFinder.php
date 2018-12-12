@@ -105,7 +105,7 @@ class TemplateFinder
      * @return array
      * @throws \ReflectionException
      */
-    private function checkAnnotation(array $controller) :array
+    private function checkAnnotation(array $controller)
     {
         $className = class_exists('Doctrine\Common\Util\ClassUtils') ? ClassUtils::getClass($controller[0]) : \get_class($controller[0]);
         $object = new ReflectionClass($className);

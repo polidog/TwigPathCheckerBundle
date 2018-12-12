@@ -25,7 +25,7 @@ class TwigExistChecker
      * @param string $templateName
      * @return bool
      */
-    public function check(string $templateName)
+    public function check($templateName)
     {
         return $this->loader->exists($templateName);
     }
