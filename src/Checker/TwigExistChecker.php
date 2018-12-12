@@ -29,4 +29,17 @@ class TwigExistChecker
     {
         return $this->loader->exists($templateName);
     }
+
+    /**
+     * @param $templateName
+     * @return mixed
+     * @throws \ReflectionException
+     */
+    public function getRealPath($templateName)
+    {
+        $ref = new \ReflectionMethod($this->loader, 'findTemplate');
+        $ref->setAccessible(true);
+        return $ref->invoke($templateName);
+
+    }
 }
